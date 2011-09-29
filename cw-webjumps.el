@@ -5,7 +5,7 @@
 ;; Author: Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 ;; Keywords: emacs, 
 ;; Created: 2011-09-29
-;; Last changed: 2011-09-29 18:35:47
+;; Last changed: 2011-09-29 20:54:27
 ;; Licence: WTFPL, grab your copy here: http://sam.zoy.org/wtfpl/
 
 ;; This file is NOT part of GNU Emacs.
@@ -37,16 +37,16 @@
 
 (dolist (type (mapcar 'car cw-webjumps-alist))
   (fset (intern (concat "cw-webjump-" (symbol-name type)))
-	`(lambda (&optional query)
+	`(lambda (&optional uarg query)
 	   "Search QUERY on appropriate search engine defined in `cw-webjumps-alist'.
 
 See `cw-webjump' for further information."
 	   (interactive)
-	   (cw-webjump ,(symbol-name type) query))))
+	   (cw-webjump uarg ,(symbol-name type) query))))
 
 
 ;;;###autoload
-(defun cw-webjump (&optional jump query)
+(defun cw-webjump (&optional uarg jump query)
   "Open a browser using `browse-url' for JUMP and search QUERY.
 
 Prompt for JUMP if not defined.
@@ -54,8 +54,11 @@ Prompt for JUMP if not defined.
 If QUERY is not defined, try to search in order:
   - text in active region,
   - `word-at-point'
-  - read from minibuffer."
-  (interactive)
+  - read from minibuffer.
+
+QUERY is read from minibuffer if called with
+`universal-argument' (C-u) or UARGS is defined."
+  (interactive "P")
   (let* ((jump (or jump
 		   (completing-read
 		    "Use jump: "
@@ -64,12 +67,15 @@ If QUERY is not defined, try to search in order:
 			    cw-webjumps-alist)
 		    nil t)))
 	 (query (or
-		 query
-		 (when (region-active-p)
-		   (buffer-substring-no-properties
-		    (region-beginning) (region-end)))
-		 (let ((wap (word-at-point)))
-		   (when wap (substring-no-properties wap)))
+		 (unless current-prefix-arg
+		   query
+		   (when (region-active-p)
+		     (message "Region")
+		     (buffer-substring-no-properties
+		      (mark) (point)))
+		   (let ((wap (word-at-point)))
+		     (message "word-at-point")
+		     (when wap (substring-no-properties wap))))
 		 (read-from-minibuffer "Query: ")))
 	 (jump-info (assoc (intern jump) cw-webjumps-alist))
 	 (url (cdr jump-info)))
