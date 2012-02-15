@@ -1,11 +1,11 @@
-;;; cw-webjumps.el --- 
+;;; webjumps++.el --- Easy search web on engines.
 
 ;; Copyright © 2011 Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 
 ;; Author: Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 ;; Keywords: emacs, 
 ;; Created: 2011-09-29
-;; Last changed: 2011-09-29 20:54:27
+;; Last changed: 2012-02-15 12:22:20
 ;; Licence: WTFPL, grab your copy here: http://sam.zoy.org/wtfpl/
 
 ;; This file is NOT part of GNU Emacs.
@@ -16,7 +16,7 @@
 
 ;;; Code:
 
-(defcustom cw-webjumps-alist
+(defcustom webjumps++-alist
   '((google . "http://www.google.com/#q=%s")
 
     (allocine . "http://www.allocine.fr/recherche/?q=%s")
@@ -35,18 +35,18 @@
   "List of webjumps")
 
 
-(dolist (type (mapcar 'car cw-webjumps-alist))
-  (fset (intern (concat "cw-webjump-" (symbol-name type)))
+(dolist (type (mapcar 'car webjumps++-alist))
+  (fset (intern (concat "webjump++-" (symbol-name type)))
 	`(lambda (&optional uarg query)
-	   "Search QUERY on appropriate search engine defined in `cw-webjumps-alist'.
+	   "Search QUERY on appropriate search engine defined in `webjumps++-alist'.
 
-See `cw-webjump' for further information."
+See `webjump++' for further information."
 	   (interactive)
-	   (cw-webjump uarg ,(symbol-name type) query))))
+	   (webjump++ uarg ,(symbol-name type) query))))
 
 
 ;;;###autoload
-(defun cw-webjump (&optional uarg jump query)
+(defun webjump++ (&optional uarg jump query)
   "Open a browser using `browse-url' for JUMP and search QUERY.
 
 Prompt for JUMP if not defined.
@@ -64,7 +64,7 @@ QUERY is read from minibuffer if called with
 		    "Use jump: "
 		    (mapcar '(lambda(x)
 			       (symbol-name (car x)))
-			    cw-webjumps-alist)
+			    webjumps++-alist)
 		    nil t)))
 	 (query (or
 		 (unless current-prefix-arg
@@ -77,7 +77,7 @@ QUERY is read from minibuffer if called with
 		     (message "word-at-point")
 		     (when wap (substring-no-properties wap))))
 		 (read-from-minibuffer "Query: ")))
-	 (jump-info (assoc (intern jump) cw-webjumps-alist))
+	 (jump-info (assoc (intern jump) webjumps++-alist))
 	 (url (cdr jump-info)))
     (unless url
       (error "No jump info found for %" jump))
@@ -86,4 +86,4 @@ QUERY is read from minibuffer if called with
    
 
 
-(provide 'cw-webjumps)
+(provide 'webjumps++)
