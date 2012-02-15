@@ -5,7 +5,7 @@
 ;; Author: Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 ;; Keywords: emacs, 
 ;; Created: 2011-09-29
-;; Last changed: 2012-02-15 12:22:20
+;; Last changed: 2012-02-15 12:56:37
 ;; Licence: WTFPL, grab your copy here: http://sam.zoy.org/wtfpl/
 
 ;; This file is NOT part of GNU Emacs.
@@ -17,20 +17,15 @@
 ;;; Code:
 
 (defcustom webjumps++-alist
-  '((google . "http://www.google.com/#q=%s")
-
-    (allocine . "http://www.allocine.fr/recherche/?q=%s")
-
+  '((allocine . "http://www.allocine.fr/recherche/?q=%s")
+    (google . "http://www.google.com/#q=%s")
     (synonymes . "http://www.crisco.unicaen.fr/cgi-bin/trouvebis2?requete=%s")
     (synonymes-com . "http://www.synonymes.com/synonyme.php?mot=%s")
-
     (using-english . "http://www.usingenglish.com/reference/idioms/search.php?q=%s")
-
-    (wordreference-enfr . "http://www.wordreference.com/enfr/%s")
-    (wordreference-fren . "http://www.wordreference.com/fren/%s")
-    
     (wikipedia . "http://www.wikipedia.org/wiki/%s")
-    (wikipedia-fr . "http://fr.wikipedia.org/wiki/%s"))
+    (wikipedia-fr . "http://fr.wikipedia.org/wiki/%s")
+    (wordreference-enfr . "http://www.wordreference.com/enfr/%s")
+    (wordreference-fren . "http://www.wordreference.com/fren/%s"))
   
   "List of webjumps")
 
