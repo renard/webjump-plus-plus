@@ -5,7 +5,7 @@
 ;; Author: Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 ;; Keywords: emacs, 
 ;; Created: 2011-09-29
-;; Last changed: 2012-02-15 13:07:19
+;; Last changed: 2012-02-16 01:30:34
 ;; Licence: WTFPL, grab your copy here: http://sam.zoy.org/wtfpl/
 
 ;; This file is NOT part of GNU Emacs.
@@ -66,14 +66,13 @@ QUERY is read from minibuffer if called with
 		    nil t)))
 	 (query (or
 		 (unless current-prefix-arg
-		   query
-		   (when (region-active-p)
-		     (message "Region")
-		     (buffer-substring-no-properties
-		      (mark) (point)))
-		   (let ((wap (word-at-point)))
-		     (message "word-at-point")
-		     (when wap (substring-no-properties wap))))
+		   (or
+		    query
+		    (when (region-active-p)
+		      (buffer-substring-no-properties
+		       (mark) (point)))
+		    (let ((wap (word-at-point)))
+		      (when wap (substring-no-properties wap)))))
 		 (read-from-minibuffer "Query: ")))
 	 (jump-info (assoc (intern jump) webjumps++-alist))
 	 (url (cdr jump-info)))
