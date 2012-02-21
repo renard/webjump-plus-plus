@@ -5,7 +5,7 @@
 ;; Author: Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 ;; Keywords: emacs, 
 ;; Created: 2011-09-29
-;; Last changed: 2012-02-16 01:30:34
+;; Last changed: 2012-02-21 11:22:03
 ;; Licence: WTFPL, grab your copy here: http://sam.zoy.org/wtfpl/
 
 ;; This file is NOT part of GNU Emacs.
@@ -19,9 +19,11 @@
 (defcustom webjumps++-alist
   '((acronymfinder . "http://www.acronymfinder.com/%s.html")
     (allocine . "http://www.allocine.fr/recherche/?q=%s")
+    (debian-package "packages.debian.org/%s")
     (emacswiki . "http://www.emacswiki.org/emacs/Search?action=index&match=%s")
     (github . "https://github.com/search?q=%s")
     (google . "http://www.google.com/#q=%s")
+    (mac-finder . "http://www.coffer.com/mac_find/?string=%s")
     (synonymes . "http://www.crisco.unicaen.fr/cgi-bin/trouvebis2?requete=%s")
     (synonymes-com . "http://www.synonymes.com/synonyme.php?mot=%s")
     (using-english . "http://www.usingenglish.com/reference/idioms/search.php?q=%s")
