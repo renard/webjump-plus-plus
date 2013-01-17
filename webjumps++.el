@@ -5,7 +5,7 @@
 ;; Author: Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 ;; Keywords: emacs, 
 ;; Created: 2011-09-29
-;; Last changed: 2012-08-27 01:50:21
+;; Last changed: 2013-01-17 09:51:40
 ;; Licence: WTFPL, grab your copy here: http://sam.zoy.org/wtfpl/
 
 ;; This file is NOT part of GNU Emacs.
@@ -23,6 +23,7 @@
     (emacswiki . "http://www.emacswiki.org/emacs/Search?action=index&match=%s")
     (github . "https://github.com/search?q=%s")
     (google . "http://www.google.com/search?q=%s")
+    (google-map . "http://maps.google.com/maps?q=%s")
     (mac-finder . "http://www.coffer.com/mac_find/?string=%s")
     (synonymes . "http://www.crisco.unicaen.fr/cgi-bin/trouvebis2?requete=%s")
     (synonymes-com . "http://www.synonymes.com/synonyme.php?mot=%s")
